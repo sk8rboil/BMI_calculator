@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:bmi_calculator/homepage.dart';
+import 'package:bmi_calculator/screens/test_provider_page1.dart';
+import 'package:bmi_calculator/screens/test_provider_page2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,6 +25,11 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const MyHomePage(title: 'BMI CALCULATOR'),
+      routes: {
+        '/homepage': (context) => MyHomePage(title: ''),
+        '/provider_page1': (context) => MyProviderPage1(),
+        '/provider_page2': (context) => MyProviderPage2(),
+      },
     );
   }
 }
