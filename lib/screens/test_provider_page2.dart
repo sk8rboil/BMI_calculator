@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:bmi_calculator/models/data_model.dart';
+import 'package:bmi_calculator/models/noti_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,8 +10,9 @@ class MyProviderPage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MydataProvider>(
-      builder: (BuildContext context, providervalue, Widget? child) => Scaffold(
+    return Consumer<NotiModel>(
+      builder: (BuildContext context, notiprovidervalue, Widget? child) =>
+          Scaffold(
         appBar: AppBar(
           title: Text('PROVIDER PAGE 2'),
           centerTitle: true,
@@ -21,7 +23,7 @@ class MyProviderPage2 extends StatelessWidget {
           children: <Widget>[
             Center(
               child: Text(
-                providervalue.text1,
+                notiprovidervalue.text1,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -30,12 +32,18 @@ class MyProviderPage2 extends StatelessWidget {
             ),
             Center(
               child: Text(
-                'DATA2',
+                notiprovidervalue.text2,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                notiprovidervalue.text2 = "Change data from button";
+              },
+              child: Text('Change data'),
             ),
           ],
         ),

@@ -2,6 +2,7 @@
 
 import 'package:bmi_calculator/homepage.dart';
 import 'package:bmi_calculator/models/data_model.dart';
+import 'package:bmi_calculator/models/noti_model.dart';
 import 'package:bmi_calculator/screens/test_provider_page1.dart';
 import 'package:bmi_calculator/screens/test_provider_page2.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (_) => MydataProvider(),
+    return MultiProvider(
+      providers: [
+        Provider<MydataProvider>(
+          create: (_) => MydataProvider(),
+        ),
+        ChangeNotifierProvider<NotiModel>(
+          create: (_) => NotiModel(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
