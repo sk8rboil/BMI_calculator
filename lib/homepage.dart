@@ -28,7 +28,9 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               width: MediaQuery.of(context).size.width,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/provider_page1');
+                },
                 child: Text('CALCULATE'),
               ),
             ),
@@ -47,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.2,
             child: Card(
+              elevation: 5,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -82,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.3,
             child: Card(
+              elevation: 5,
               child: Center(child: Text('Height')),
             ),
           ),
@@ -97,6 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.3,
             child: Card(
+              elevation: 5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -116,13 +121,37 @@ class _MyHomePageState extends State<MyHomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FloatingActionButton(
-                        onPressed: () {},
-                        child: Icon(Icons.add),
+                      SizedBox(
+                        height: 70,
+                        child: FittedBox(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              elevation: 5,
+                            ),
+                            onPressed: () {},
+                            child: Icon(
+                              Icons.add,
+                              size: 15,
+                            ),
+                          ),
+                        ),
                       ),
-                      FloatingActionButton(
-                        onPressed: () {},
-                        child: Icon(Icons.remove),
+                      SizedBox(
+                        height: 70,
+                        child: FittedBox(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 5,
+                              shape: CircleBorder(),
+                            ),
+                            onPressed: () {},
+                            child: Icon(
+                              Icons.remove,
+                              size: 15,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -135,6 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.3,
             child: Card(
+              elevation: 5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -154,13 +184,37 @@ class _MyHomePageState extends State<MyHomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FloatingActionButton(
-                        onPressed: () {},
-                        child: Icon(Icons.add),
+                      SizedBox(
+                        height: 70,
+                        child: FittedBox(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              elevation: 5,
+                            ),
+                            onPressed: () {},
+                            child: Icon(
+                              Icons.add,
+                              size: 15,
+                            ),
+                          ),
+                        ),
                       ),
-                      FloatingActionButton(
-                        onPressed: () {},
-                        child: Icon(Icons.remove),
+                      SizedBox(
+                        height: 70,
+                        child: FittedBox(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 5,
+                              shape: CircleBorder(),
+                            ),
+                            onPressed: () {},
+                            child: Icon(
+                              Icons.remove,
+                              size: 15,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
