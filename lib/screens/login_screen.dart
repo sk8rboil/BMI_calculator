@@ -51,11 +51,17 @@ class MyLoginScreen extends StatelessWidget {
             TextFormField(
               controller: email_controller,
               keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                hintText: 'Email',
+              ),
             ),
             TextFormField(
               controller: password_controller,
               obscureText: true,
               keyboardType: TextInputType.visiblePassword,
+              decoration: InputDecoration(
+                hintText: 'Password',
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
