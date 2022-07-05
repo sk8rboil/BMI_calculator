@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:bmi_calculator/models/data_model.dart';
 import 'package:bmi_calculator/models/noti_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

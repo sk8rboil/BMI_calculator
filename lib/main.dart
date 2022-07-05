@@ -3,6 +3,8 @@
 import 'package:bmi_calculator/homepage.dart';
 import 'package:bmi_calculator/models/data_model.dart';
 import 'package:bmi_calculator/models/noti_model.dart';
+import 'package:bmi_calculator/screens/login_screen.dart';
+import 'package:bmi_calculator/screens/register_screen.dart';
 import 'package:bmi_calculator/screens/test_provider_page1.dart';
 import 'package:bmi_calculator/screens/test_provider_page2.dart';
 import 'package:flutter/material.dart';
@@ -36,11 +38,13 @@ class MyApp extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        home: const MyHomePage(title: 'BMI CALCULATOR'),
+        home: MyLoginScreen(),
         routes: {
           '/homepage': (context) => MyHomePage(title: ''),
           '/provider_page1': (context) => MyProviderPage1(),
           '/provider_page2': (context) => MyProviderPage2(),
+          '/login_screen': (context) => MyLoginScreen(),
+          '/register_screen': (context) => MyRegisterScreen(),
         },
       ),
     );
