@@ -1,17 +1,43 @@
 // ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, avoid_print, unused_element, prefer_void_to_null
 
 /* import 'package:bmi_calculator/models/user_model.dart'; */
+import 'package:bmi_calculator/models/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 final formKey = GlobalKey<FormState>();
 TextEditingController email_controller = TextEditingController();
 TextEditingController password_controller = TextEditingController();
-/* UserModel user =
-    UserModel(email: '', username: '', password: '', repassword: ''); */
+UserModel user =
+    UserModel(email: '', username: '', password: '', repassword: '');
 
 class MyLoginScreen extends StatelessWidget {
   const MyLoginScreen({Key? key}) : super(key: key);
+
+  Future<Null> signinwithEmailandPass(context) async {
+    await Firebase.initializeApp().then((value) async {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: user.email, password: user.password)
+          .then((value) {
+        print('signin Success!');
+        print('email: ${user.email}');
+        print('password: ${user.password}');
+
+        Navigator.pushReplacementNamed(context, '/homepage')
+            .catchError((onError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Error'),
+              backgroundColor: Colors.redAccent,
+            ),
+          );
+        });
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,9 +123,12 @@ class MyLoginScreen extends StatelessWidget {
                     // If the form is valid, display a snackbar. In the real world,
                     // you'd often call a server or save the information in a database.
                     formKey.currentState!.save();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Processing Data')),
-                    );
+
+                    user.email = email_controller.text;
+                    user.password = password_controller.text;
+                    print('username: ${user.username}');
+
+                    signinwithEmailandPass(context);
                   }
                 },
                 child: Text('LOGIN'),

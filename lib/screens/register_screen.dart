@@ -16,7 +16,7 @@ UserModel user =
 class MyRegisterScreen extends StatelessWidget {
   const MyRegisterScreen({Key? key}) : super(key: key);
 
-  Future<Null> firebasestatus(context) async {
+  Future<Null> createAccount(context) async {
     await Firebase.initializeApp().then((value) async {
       FirebaseAuth.instance
           .createUserWithEmailAndPassword(
@@ -143,7 +143,7 @@ class MyRegisterScreen extends StatelessWidget {
                     user.username = username.text;
                     user.repassword = repassword.text;
 
-                    firebasestatus(context);
+                    createAccount(context);
                     print('user: ${user.email}');
                     print('user: ${user.password}');
                     print('user: ${user.repassword}');
