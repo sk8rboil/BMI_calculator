@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           create: (_) => NotiModel(),
         ),
         ChangeNotifierProvider<bmiModel>(
-          create: (_) => bmiModel(age: 0, height: 0, weight: 0),
+          create: (_) => bmiModel(),
         ),
       ],
       child: MaterialApp(

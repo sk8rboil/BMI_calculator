@@ -1,24 +1,22 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_void_to_null, avoid_print, unnecessary_new, prefer_final_fields
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_void_to_null, avoid_print, unnecessary_new, prefer_final_fields, unused_local_variable
 
+import 'package:bmi_calculator/models/bmi_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
   Widget build(BuildContext context) {
+    final counter = Provider.of<bmiModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
         centerTitle: true,
         actions: [
           IconButton(
@@ -90,14 +88,17 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            firstCard(context),
-            secondCard(context),
-            thirdCard(context),
-            calculateButton(context),
-          ],
+      body: Consumer<bmiModel>(
+        builder: (BuildContext context, bmivalue, Widget? child) =>
+            SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              firstCard(context, bmivalue, counter),
+              secondCard(context),
+              thirdCard(context),
+              calculateButton(context),
+            ],
+          ),
         ),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
@@ -169,7 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Row firstCard(BuildContext context) {
+  Row firstCard(BuildContext context, bmivalue, counter) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -188,9 +189,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Text(
-                    'DATA',
+                    counter.age.toString(),
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Row(
@@ -204,7 +206,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               shape: CircleBorder(),
                               elevation: 5,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              counter.addAge();
+                            },
                             child: Icon(
                               Icons.add,
                               size: 15,
@@ -220,7 +224,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               elevation: 5,
                               shape: CircleBorder(),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              counter.removeAge();
+                            },
                             child: Icon(
                               Icons.remove,
                               size: 15,
@@ -251,9 +257,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Text(
-                    'DATA',
+                    counter.weight.toString(),
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Row(
@@ -267,7 +274,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               shape: CircleBorder(),
                               elevation: 5,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              counter.addWeight();
+                            },
                             child: Icon(
                               Icons.add,
                               size: 15,
@@ -283,7 +292,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               elevation: 5,
                               shape: CircleBorder(),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              counter.removeWeight();
+                            },
                             child: Icon(
                               Icons.remove,
                               size: 15,

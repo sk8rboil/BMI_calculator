@@ -6,14 +6,24 @@ class bmiModel extends ChangeNotifier {
   int age = 0;
   int height = 0;
   int weight = 0;
-  bmiModel({
-    required this.age,
-    required this.height,
-    required this.weight,
-  });
 
   void addAge() {
-    age = age++;
+    age++;
+    notifyListeners();
+  }
+
+  void removeAge() {
+    age--;
+    notifyListeners();
+  }
+
+  void addWeight() {
+    weight++;
+    notifyListeners();
+  }
+
+  void removeWeight() {
+    weight--;
     notifyListeners();
   }
 }
