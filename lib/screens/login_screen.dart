@@ -126,8 +126,6 @@ class MyLoginScreen extends StatelessWidget {
 
                     user.email = email_controller.text;
                     user.password = password_controller.text;
-                    print('username: ${user.username}');
-
                     signinwithEmailandPass(context);
                   }
                 },

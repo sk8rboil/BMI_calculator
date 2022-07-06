@@ -135,6 +135,7 @@ class MyRegisterScreen extends StatelessWidget {
                     // If the form is valid, display a snackbar. In the real world,
                     // you'd often call a server or save the information in a database.
                     _formKey.currentState!.save();
+                    _formKey.currentState!.reset();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Processing Data')),
                     );
@@ -148,8 +149,6 @@ class MyRegisterScreen extends StatelessWidget {
                     print('user: ${user.password}');
                     print('user: ${user.repassword}');
                     print('user: ${user.username}');
-
-                    _formKey.currentState!.reset();
                   }
                 },
                 child: Text('REGISTER'),

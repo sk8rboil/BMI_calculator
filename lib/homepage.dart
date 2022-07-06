@@ -18,6 +18,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.menu),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -25,19 +31,23 @@ class _MyHomePageState extends State<MyHomePage> {
             firstCard(context),
             secondCard(context),
             thirdCard(context),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/provider_page1');
-                },
-                child: Text('CALCULATE'),
-              ),
-            ),
+            calculateButton(context),
           ],
         ),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  SizedBox calculateButton(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/provider_page1');
+        },
+        child: Text('CALCULATE'),
+      ),
     );
   }
 
