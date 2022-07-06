@@ -1,5 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_void_to_null, avoid_print
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -20,8 +22,10 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.menu),
+            onPressed: () {
+              signOut(context);
+            },
+            icon: Icon(Icons.logout_outlined),
           ),
         ],
       ),
@@ -236,4 +240,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
   }
+}
+
+Future<Null> signOut(context) async {
+  await Firebase.initializeApp().then((value) async {
+    await FirebaseAuth.instance.signOut().then((value) {
+      print('SignOut!');
+      Navigator.pushReplacementNamed(context, '/login_screen');
+    });
+  });
 }

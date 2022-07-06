@@ -101,8 +101,8 @@ class MyLoginScreen extends StatelessWidget {
               padding: const EdgeInsets.all(5.0),
               child: TextFormField(
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'กรุณารหัสผ่าน';
+                  if (value!.isEmpty && value.length < 8) {
+                    return 'กรุณารหัสผ่านอย่างน้อย 8 ตัว';
                   } else {
                     return null;
                   }
