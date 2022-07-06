@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, await_only_futures, prefer_void_to_null
 
 import 'package:bmi_calculator/homepage.dart';
+import 'package:bmi_calculator/models/bmi_model.dart';
 import 'package:bmi_calculator/models/data_model.dart';
 import 'package:bmi_calculator/models/noti_model.dart';
 import 'package:bmi_calculator/screens/login_screen.dart';
@@ -40,12 +41,15 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<NotiModel>(
           create: (_) => NotiModel(),
         ),
+        ChangeNotifierProvider<bmiModel>(
+          create: (_) => bmiModel(age: 0, height: 0, weight: 0),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.teal,
+          primarySwatch: Colors.deepPurple,
           appBarTheme: AppBarTheme(
             color: Colors.black,
           ),

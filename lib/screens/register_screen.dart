@@ -16,33 +16,23 @@ UserModel user =
 class MyRegisterScreen extends StatelessWidget {
   const MyRegisterScreen({Key? key}) : super(key: key);
 
-  Future<Null> createAccount(context) async {
-    await Firebase.initializeApp().then((value) async {
-      FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: user.email, password: user.password)
-          .then((value) async {
-        await value.user!.updateDisplayName(user.username).then((value) {
-          print(user.username);
-        });
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            // ignore: prefer_const_literals_to_create_immutables
-            children: <Widget>[
-              pagename(),
-              registerform(context),
-            ],
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: <Widget>[
+                pagename(),
+                registerform(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -96,9 +86,12 @@ class MyRegisterScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: TextFormField(
+                onChanged: (value) => user.password = value.trim(),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'กรุณารหัสผ่าน';
+                  } else if (value.isNotEmpty && value.length < 8) {
+                    return 'รหัสผ่านอย่างน้อย 8 ตัว';
                   } else {
                     return null;
                   }
@@ -113,9 +106,12 @@ class MyRegisterScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: TextFormField(
+                onChanged: (value) => user.repassword = value.trim(),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'กรุณารหัสผ่าน';
+                  } else if (user.repassword != user.password) {
+                    return 'รหัสผ่านไม่ตรงกัน';
                   } else {
                     return null;
                   }
@@ -150,6 +146,8 @@ class MyRegisterScreen extends StatelessWidget {
                     print('user: ${user.repassword}');
                     print('user: ${user.username}');
                   }
+                  print(user.password);
+                  print(user.repassword);
                 },
                 child: Text('REGISTER'),
               ),
@@ -182,4 +180,22 @@ class MyRegisterScreen extends StatelessWidget {
       ],
     );
   }
+}
+
+Future<Null> createAccount(context) async {
+  await Firebase.initializeApp().then((value) async {
+    FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
+            email: user.email, password: user.password)
+        .then((value) async {
+      await value.user!.updateDisplayName(user.username).catchError((onError) {
+        print(onError);
+        showDialog(
+            context: context,
+            builder: (context) => Dialog(
+                  child: Text(onError),
+                ));
+      });
+    });
+  });
 }

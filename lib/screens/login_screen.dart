@@ -16,29 +16,6 @@ UserModel user =
 class MyLoginScreen extends StatelessWidget {
   const MyLoginScreen({Key? key}) : super(key: key);
 
-  Future<Null> signinwithEmailandPass(context) async {
-    await Firebase.initializeApp().then((value) async {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: user.email, password: user.password)
-          .then((value) {
-        print('signin Success!');
-        print('email: ${user.email}');
-        print('password: ${user.password}');
-
-        Navigator.pushReplacementNamed(context, '/homepage')
-            .catchError((onError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Error'),
-              backgroundColor: Colors.redAccent,
-            ),
-          );
-        });
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,14 +23,17 @@ class MyLoginScreen extends StatelessWidget {
         title: Text('MY-BMI'),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            // ignore: prefer_const_literals_to_create_immutables
-            children: <Widget>[
-              logoapp(context),
-              loginform(context),
-            ],
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: <Widget>[
+                logoapp(context),
+                loginform(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -152,4 +132,26 @@ class MyLoginScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<Null> signinwithEmailandPass(context) async {
+  await Firebase.initializeApp().then((value) async {
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: user.email, password: user.password)
+        .then((value) {
+      print('signin Success!');
+      print('email: ${user.email}');
+      print('password: ${user.password}');
+
+      Navigator.pushReplacementNamed(context, '/homepage')
+          .catchError((onError) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Error'),
+            backgroundColor: Colors.redAccent,
+          ),
+        );
+      });
+    });
+  });
 }

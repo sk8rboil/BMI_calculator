@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_void_to_null, avoid_print
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_void_to_null, avoid_print, unnecessary_new, prefer_final_fields
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,6 +28,67 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.logout_outlined),
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.black,
+              ),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Row(
+                      children: <Widget>[
+                        Stack(
+                          children: [
+                            SizedBox(
+                              height: 30,
+                              child: CircleAvatar(
+                                child: FittedBox(),
+                              ),
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: CircleBorder(),
+                              ),
+                              onPressed: () {},
+                              child: Icon(Icons.add),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            'DisplayName',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Reset Password'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            ListTile(),
+            ListTile(),
+            ListTile(),
+            ListTile(),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
