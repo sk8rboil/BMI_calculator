@@ -1,14 +1,14 @@
 // ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, avoid_print, unused_element, prefer_void_to_null
 
-import 'package:bmi_calculator/models/user_model.dart';
+/* import 'package:bmi_calculator/models/user_model.dart'; */
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 final formKey = GlobalKey<FormState>();
 TextEditingController email_controller = TextEditingController();
 TextEditingController password_controller = TextEditingController();
-UserModel user =
-    UserModel(email: '', username: '', password: '', repassword: '');
+/* UserModel user =
+    UserModel(email: '', username: '', password: '', repassword: ''); */
 
 class MyLoginScreen extends StatelessWidget {
   const MyLoginScreen({Key? key}) : super(key: key);
